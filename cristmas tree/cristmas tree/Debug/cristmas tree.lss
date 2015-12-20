@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.52  D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm Sun Dec 20 23:05:59 2015
+AVRASM ver. 2.1.52  D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm Mon Dec 21 01:22:33 2015
 
 [builtin](2): Including file 'C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR Assembler\Native\2.1.39.1005\avrassembler\Include\tn24Adef.inc'
 D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): Including file 'C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR Assembler\Native\2.1.39.1005\avrassembler\Include\tn24Adef.inc'
@@ -723,13 +723,14 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
                  
                  ; ***** END OF FILE ******************************************************
                  ;= Start macro.inc ========================================
-                  .def Rmode = R16
-                  .def Rleft = R17
-                  .def Rright = R18
-                  .def Rtime = R19
-                  .def Rtemp = R20
-                  .def Ri = R21 
+                  .def Rmode = R16	//текущий режим
+                  .def Rleft = R17	//левая граница массива для текущего режима
+                  .def Rright = R18	//правая граница массива для текущего режима
+                  .def Rtime = R19	//время задержки для компаратора таймера - старший байт
+                  .def Rtemp = R20	//временный регистр
+                  .def Ri = R21		//текущий индекс элемента массива
                  ;= End macro.inc  ========================================
+                 
                  ; RAM =====================================================
                  		.DSEG			; Сегмент ОЗУ
                  ; FLASH ===================================================
@@ -774,12 +775,13 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
 000011 9518      		reti
                  	
                  RESET:
+                 		//устанавливаем нужные ноги на выход
 000012 ee40      		ldi Rtemp, 0b11100000
 000013 bb4a      		out DDRA, Rtemp
-                 
 000014 e044      		ldi Rtemp, 0b00000100
 000015 bb47      		out DDRB, Rtemp
                  
+                 		//инициализируем первый режим
 000016 e000      		ldi Rmode, 0
 000017 e010      		ldi Rleft, 0
 000018 e022      		ldi Rright, 2
@@ -792,21 +794,20 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
 00001c e041      		ldi Rtemp, 0b00000001
 00001d bd40      		out PCMSK1,Rtemp
                  
+                 		//инициализируем таймер
 00001e e242      		ldi Rtemp,0b00100010   ;разрешить прерывание компаратора
 00001f b94c      		out TIMSK1,Rtemp
-                 
 000020 e042      		ldi Rtemp,0b00000010   ;тактовый сигнал = CK/8
 000021 bd4e      		out TCCR1B,Rtemp
-                 
 000022 bd3b      		out OCR1AH,Rtime		;инициализация компаратора
 000023 e040      		ldi Rtemp,0x00 
 000024 bd4a      		out OCR1AL,Rtemp
-                 
 000025 e040      		ldi Rtemp,0            ;обнуление таймера
 000026 bd4d      		out TCNT1H,Rtemp
 000027 bd4c      		out TCNT1L,Rtemp
                  		
 000028 9478      		sei
+                 
                  body:
 000029 cfff      		rjmp body
                  
@@ -829,9 +830,9 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
 000034 95c8      		lpm                   ;загрузка из ПЗУ
                  
 000035 2d40      		mov Rtemp,R0           ;копирование в РОН
-000036 9553      		inc Ri             ;увеличение внутр. адреса
+000036 9553      		inc Ri					;увеличение внутр. адреса
                  
-000037 bb4b      		out PortA, Rtemp       ;вывод в порт A
+000037 bb4b      		out PortA, Rtemp       ;вывод считаного значения в порт A
                  
 000038 e0f0      		ldi ZH,High(Array*2)  ;загрузка начального адреса массива
 000039 eee4      		ldi ZL,Low(Array*2)
@@ -845,7 +846,7 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
 00003e 2d40      		mov Rtemp,R0           ;копирование в РОН
 00003f 9553      		inc Ri             ;увеличение внутр. адреса
                  
-000040 bb48      		out PortB, Rtemp       ;вывод в порт B
+000040 bb48      		out PortB, Rtemp       ;вывод считанного значения в порт B
 000041 9518      		reti
                  
                  Init:    
@@ -856,10 +857,10 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
                  		//проверяем состояние ноги
                  		//т.к. прерывание от 1 ноги, достаточно проверить уровень
                  		//если 0 - прерывание по спаду
-                 		//нет фикса дребезга
 000044 99b0      		sbic PINB, 0
 000045 9518      		reti
                  
+                 		//переход к следующему режиму
 000046 9503      		inc Rmode
 000047 3001      		cpi Rmode, 1
 000048 f079      		breq mode1
@@ -878,6 +879,7 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
                  
 000051 9518      		reti
                  
+                 		//инициализация всех режимов
                  mode0:
 000052 e000      		ldi Rmode, 0
 000053 e010      		ldi Rleft, 0
@@ -909,16 +911,19 @@ D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm(1): In
 000069 e356      		ldi Ri, 54
 00006a e530      		ldi Rtime, 0x50
                  init_compare:
-00006b bd3b      		out OCR1AH,Rtime		;инициализация компаратора
+                 		//установка задержки
+00006b bd3b      		out OCR1AH,Rtime		
 00006c e040      		ldi Rtemp,0x00 
 00006d bd4a      		out OCR1AL,Rtemp
-                 
-00006e e040      		ldi Rtemp,0            ;обнуление таймера
+                 		//сброс таймера
+00006e e040      		ldi Rtemp,0            
 00006f bd4d      		out TCNT1H,Rtemp
 000070 bd4c      		out TCNT1L,Rtemp
 000071 9518      		reti
                  
                  Array:
+                 		//слева значения для порта А, справа для порта В
+                 		//ситаются и выводятся парами за 1 цикл
 000072 04e0      		.db   0b11100000,0b00000100//mode0
 000073 04e0      		.db   0b11100000,0b00000100//mode1
 000074 0000      		.db   0b00000000,0b00000000

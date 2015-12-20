@@ -1,12 +1,13 @@
 .include "tn24Adef.inc"
 ;= Start macro.inc ========================================
- .def Rmode = R16
- .def Rleft = R17
- .def Rright = R18
- .def Rtime = R19
- .def Rtemp = R20
- .def Ri = R21 
+ .def Rmode = R16	//текущий режим
+ .def Rleft = R17	//левая граница массива для текущего режима
+ .def Rright = R18	//правая граница массива для текущего режима
+ .def Rtime = R19	//время задержки для компаратора таймера - старший байт
+ .def Rtemp = R20	//временный регистр
+ .def Ri = R21		//текущий индекс элемента массива
 ;= End macro.inc  ========================================
+
 ; RAM =====================================================
 		.DSEG			; Сегмент ОЗУ
 ; FLASH ===================================================
@@ -51,12 +52,13 @@ USI_OVF:	// USI Overflow
 		reti
 	
 RESET:
+		//устанавливаем нужные ноги на выход
 		ldi Rtemp, 0b11100000
 		out DDRA, Rtemp
-
 		ldi Rtemp, 0b00000100
 		out DDRB, Rtemp
 
+		//инициализируем первый режим
 		ldi Rmode, 0
 		ldi Rleft, 0
 		ldi Rright, 2
@@ -69,21 +71,20 @@ RESET:
 		ldi Rtemp, 0b00000001
 		out PCMSK1,Rtemp
 
+		//инициализируем таймер
 		ldi Rtemp,0b00100010   ;разрешить прерывание компаратора
 		out TIMSK1,Rtemp
-
 		ldi Rtemp,0b00000010   ;тактовый сигнал = CK/8
 		out TCCR1B,Rtemp
-
 		out OCR1AH,Rtime		;инициализация компаратора
 		ldi Rtemp,0x00 
 		out OCR1AL,Rtemp
-
 		ldi Rtemp,0            ;обнуление таймера
 		out TCNT1H,Rtemp
 		out TCNT1L,Rtemp
 		
 		sei
+
 body:
 		rjmp body
 
@@ -106,9 +107,9 @@ ReadArray:
 		lpm                   ;загрузка из ПЗУ
 
 		mov Rtemp,R0           ;копирование в РОН
-		inc Ri             ;увеличение внутр. адреса
+		inc Ri					;увеличение внутр. адреса
 
-		out PortA, Rtemp       ;вывод в порт A
+		out PortA, Rtemp       ;вывод считаного значения в порт A
 
 		ldi ZH,High(Array*2)  ;загрузка начального адреса массива
 		ldi ZL,Low(Array*2)
@@ -122,7 +123,7 @@ ReadArray:
 		mov Rtemp,R0           ;копирование в РОН
 		inc Ri             ;увеличение внутр. адреса
 
-		out PortB, Rtemp       ;вывод в порт B
+		out PortB, Rtemp       ;вывод считанного значения в порт B
 		reti
 
 Init:    
@@ -133,10 +134,10 @@ PCINT1_:
 		//проверяем состояние ноги
 		//т.к. прерывание от 1 ноги, достаточно проверить уровень
 		//если 0 - прерывание по спаду
-		//нет фикса дребезга
 		sbic PINB, 0
 		reti
 
+		//переход к следующему режиму
 		inc Rmode
 		cpi Rmode, 1
 		breq mode1
@@ -155,6 +156,7 @@ PCINT1_:
 
 		reti
 
+		//инициализация всех режимов
 mode0:
 		ldi Rmode, 0
 		ldi Rleft, 0
@@ -186,16 +188,19 @@ mode4:
 		ldi Ri, 54
 		ldi Rtime, 0x50
 init_compare:
-		out OCR1AH,Rtime		;инициализация компаратора
+		//установка задержки
+		out OCR1AH,Rtime		
 		ldi Rtemp,0x00 
 		out OCR1AL,Rtemp
-
-		ldi Rtemp,0            ;обнуление таймера
+		//сброс таймера
+		ldi Rtemp,0            
 		out TCNT1H,Rtemp
 		out TCNT1L,Rtemp
 		reti
 
 Array:
+		//слева значения для порта А, справа для порта В
+		//ситаются и выводятся парами за 1 цикл
 		.db   0b11100000,0b00000100//mode0
 		.db   0b11100000,0b00000100//mode1
 		.db   0b00000000,0b00000000

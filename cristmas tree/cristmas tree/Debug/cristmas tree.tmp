@@ -21,32 +21,32 @@
   <FILE>cristmas tree.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <RESET><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>53</LINE></RESET>
-  <PCINT0_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>36</LINE></PCINT0_>
-  <PCINT1_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>132</LINE></PCINT1_>
-  <WDT><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>38</LINE></WDT>
-  <TIM1_CAPT><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>39</LINE></TIM1_CAPT>
-  <TIM1_COMPA><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>90</LINE></TIM1_COMPA>
-  <TIM1_COMPB><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>41</LINE></TIM1_COMPB>
-  <TIM1_OVF><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>42</LINE></TIM1_OVF>
-  <TIM0_COMPA><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>43</LINE></TIM0_COMPA>
-  <TIM0_COMPB><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>44</LINE></TIM0_COMPB>
-  <TIM0_OVF><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>45</LINE></TIM0_OVF>
-  <ANA_COMP><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>46</LINE></ANA_COMP>
-  <ADC_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>47</LINE></ADC_>
-  <EE_RDY><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>48</LINE></EE_RDY>
-  <USI_STR><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>49</LINE></USI_STR>
-  <USI_OVF><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>50</LINE></USI_OVF>
-  <INT0_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>35</LINE></INT0_>
-  <body><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>87</LINE></body>
-  <Init><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>128</LINE></Init>
-  <ReadArray><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>98</LINE></ReadArray>
-  <Array><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>198</LINE></Array>
-  <mode1><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>165</LINE></mode1>
-  <mode2><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>171</LINE></mode2>
-  <mode3><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>177</LINE></mode3>
-  <mode4><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>183</LINE></mode4>
-  <mode0><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>158</LINE></mode0>
-  <init_compare><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>188</LINE></init_compare>
+  <RESET><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>54</LINE></RESET>
+  <PCINT0_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>37</LINE></PCINT0_>
+  <PCINT1_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>133</LINE></PCINT1_>
+  <WDT><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>39</LINE></WDT>
+  <TIM1_CAPT><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>40</LINE></TIM1_CAPT>
+  <TIM1_COMPA><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>91</LINE></TIM1_COMPA>
+  <TIM1_COMPB><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>42</LINE></TIM1_COMPB>
+  <TIM1_OVF><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>43</LINE></TIM1_OVF>
+  <TIM0_COMPA><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>44</LINE></TIM0_COMPA>
+  <TIM0_COMPB><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>45</LINE></TIM0_COMPB>
+  <TIM0_OVF><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>46</LINE></TIM0_OVF>
+  <ANA_COMP><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>47</LINE></ANA_COMP>
+  <ADC_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>48</LINE></ADC_>
+  <EE_RDY><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>49</LINE></EE_RDY>
+  <USI_STR><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>50</LINE></USI_STR>
+  <USI_OVF><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>51</LINE></USI_OVF>
+  <INT0_><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>36</LINE></INT0_>
+  <body><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>88</LINE></body>
+  <Init><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>129</LINE></Init>
+  <ReadArray><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>99</LINE></ReadArray>
+  <Array><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>201</LINE></Array>
+  <mode1><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>167</LINE></mode1>
+  <mode2><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>173</LINE></mode2>
+  <mode3><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>179</LINE></mode3>
+  <mode4><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>185</LINE></mode4>
+  <mode0><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>160</LINE></mode0>
+  <init_compare><FILE>D:\xampp\git\christmas-tree\cristmas tree\cristmas tree\cristmas tree.asm</FILE><LINE>190</LINE></init_compare>
  </LABELS>
 </ASSEMBLER_INFO>
